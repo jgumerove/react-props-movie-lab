@@ -1,3 +1,4 @@
+/* eslint-disable */
 import defaultPoster from '../assets/poster-imgs/default.png'
 import cmi from '../assets/poster-imgs/choux-and-maru-go-to-istanbul.png'
 import cmp1 from '../assets/poster-imgs/choux-and-maru-p1.png'
@@ -30,14 +31,22 @@ const posterMap = {
 export default class MovieCard extends Component {
 
   render() {
+    const { title, IMDBRating, genres, poster } = this.props
     return (
       <div className="movie-card">
         {/* which component should receive which props? */}
-        <CardFront />
-        <CardBack />
+        <CardFront poster={poster} />
+        <CardBack title={title} IMDBRating={IMDBRating} genres={genres} />
       </div>
     )
   }
 }
 
 // Don't forget your default props!
+
+MovieCard.defaultProps = {
+  title: "Unknown",
+  IMDBRating: null,
+  genres: ["No Genre(s) Found"],
+  poster: "default"
+};
